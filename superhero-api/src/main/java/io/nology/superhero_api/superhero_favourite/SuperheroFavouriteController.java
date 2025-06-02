@@ -45,12 +45,12 @@ public class SuperheroFavouriteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<SuperheroFavourite> updateSuperheroFavourite(@PathVariable Long id, @RequestBody @Valid UpdateSuperheroFavouriteDTO data) {
-        SuperheroFavourite updatedFavourite = superheroService.updateFavourite(id, data);
+        SuperheroFavourite updatedFavourite = superheroService.updateSuperheroFavourite(id, data);
         return new ResponseEntity<>(updatedFavourite, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public void deleteSuperheroFavourite(@PathVariable Long id){
-        superheroService.deleteFavourite(id);
+        superheroService.deleteSuperheroFavourite(id);
     }
 }
