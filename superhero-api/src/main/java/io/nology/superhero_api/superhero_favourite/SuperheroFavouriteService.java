@@ -11,7 +11,7 @@ public class SuperheroFavouriteService {
 
     private SuperheroFavouriteRepository repo;
     private ModelMapper mapper;
-    
+
     public SuperheroFavouriteService(SuperheroFavouriteRepository repo, ModelMapper mapper) {
         this.repo = repo;
         this.mapper = mapper;
@@ -23,7 +23,7 @@ public class SuperheroFavouriteService {
 
     public SuperheroFavourite getSuperheroFavouriteById(Long id) {
         Optional<SuperheroFavourite> result = repo.findById(id);
-        if(result.isEmpty()) {
+        if (result.isEmpty()) {
             return null;
         }
         return result.get();
@@ -34,21 +34,20 @@ public class SuperheroFavouriteService {
         return this.repo.save(newFavourite);
     }
 
-    public SuperheroFavourite updateFavourite(Long id, UpdateSuperheroFavouriteDTO data) {
+    public SuperheroFavourite updateSuperheroFavourite(Long id, UpdateSuperheroFavouriteDTO data) {
         Optional<SuperheroFavourite> result = this.repo.findById(id);
-    if (result.isEmpty()) {
-      return null;
-    }
-    SuperheroFavourite found = result.get();
-    mapper.map(data, found);
-    return this.repo.save(found);
+        if (result.isEmpty()) {
+            return null;
+        }
+        SuperheroFavourite found = result.get();
+        mapper.map(data, found);
+        return this.repo.save(found);
     }
 
-    public String deleteFavourite(Long id) {
-       SuperheroFavourite found = getSuperheroFavouriteById(id);
-       found.setDeleted(true);
-       this.repo.save(found);
-       return "Successfully deleted";
+    public void deleteSuperheroFavourite(Long id) {
+        SuperheroFavourite found = getSuperheroFavouriteById(id);
+        found.setDeleted(true);
+        this.repo.save(found);
     }
 
 }
