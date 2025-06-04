@@ -1,0 +1,11 @@
+.carousel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 30em;
+  button {
+    height: 2em;
+    width: 2em;
+  }
+}
