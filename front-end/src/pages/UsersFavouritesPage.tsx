@@ -23,11 +23,11 @@ const { data: favouritesData } = useQuery({
         }
       </Navbar>
       <header>
-        <h2>Your Superheroes Favourites</h2>
+        <h1>Your Superheroes Favourites</h1>
         <NavButton
           handleClick={() => console.log("searching for a specific hero")}
         >
-          <h3>Search</h3>
+          <h2>Search from your favourites heroes</h2>
         </NavButton>
       </header>
       <CardContainer data={favouritesData}/>

@@ -65,8 +65,13 @@ button:focus-visible {
 header {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+header > button {
+  margin: 2em;
 }
 
 @media (prefers-color-scheme: light) {
