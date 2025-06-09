@@ -1,0 +1,20 @@
+.fav_card {
+  width: 60em;
+  height: 30em;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.hero_profile {
+  height: 100%;
+  width: 20em;
+  border: 1px solid black;
+}
+
+.hero_stats {
+  height: 100%;
+  width: 50%;
+  border: 1px solid black;
+}

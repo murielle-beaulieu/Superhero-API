@@ -5,6 +5,7 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { NavButton } from "../components/NavButton/NavButton";
 import { Hero } from "../components/Hero/Hero";
 import { Carousel } from "../components/Carousel/Carousel";
+import { useNavigate } from "react-router";
 
 export const Homepage = () => {
   const { status, error } = useQuery({
@@ -16,6 +17,8 @@ export const Homepage = () => {
     queryKey: ["favourites"],
     queryFn: fetchAllSuperheroesFavourites,
   });
+
+  const navigate = useNavigate();
 
   console.log(favouritesData);
 
@@ -31,17 +34,15 @@ export const Homepage = () => {
     <>
       <Navbar>
         {
-          <NavButton
-            handleClick={() => console.log("navigate to favourites page")}
-          >
+          <NavButton handleClick={() => navigate("/favourites")}>
             <h3>See All Your Favourites</h3>
           </NavButton>
         }
       </Navbar>
       <Hero>
-      <h1>Hello Superheroes</h1>
+        <h1>Hello Superheroes</h1>
       </Hero>
-      <Carousel/>
+      <Carousel />
       {/* <ul>
         {data.map((hero) => (
             <li key={hero.id}>{hero.name}</li>
@@ -52,6 +53,7 @@ export const Homepage = () => {
             <li>{fav.superhero_name}</li>
         ))}
       </ul> */}
+      <button onClick={()=>navigate("")}></button>
     </>
   );
 

@@ -2,38 +2,34 @@ import { useState } from "react";
 import { SuperHeroCard } from "../SuperheroCard/SuperheroCard";
 import styles from "./Carousel.module.scss";
 
-
-const info = [<SuperHeroCard key={1} id={0}/>,
-            <SuperHeroCard key={1} id={1}/>,
-            <SuperHeroCard key={2} id={2}/>,
-            <SuperHeroCard key={3} id={3}/>,
-            <SuperHeroCard key={4} id={4}/>];
-
-// const info = [1,2,5,6,8];
-
-
+const info = [
+  <SuperHeroCard key={0} id={0} />,
+  <SuperHeroCard key={1} id={1} />,
+  <SuperHeroCard key={2} id={2} />,
+  <SuperHeroCard key={3} id={3} />,
+  <SuperHeroCard key={4} id={4} />,
+];
 
 export const Carousel = () => {
-    
-    const [display, setDisplay] = useState([1,2,3]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const filteredCards = info.filter((card) => display.includes(card.props.id));
-    
-    const goBack = () => {
-        console.log('back')
+  const back = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(() => currentIndex - 1);
     }
+  };
 
-    const goForward = () => {
-        console.log('forward')
+  const forward = () => {
+    if (currentIndex < info.length - 3) {
+      setCurrentIndex(() => currentIndex + 1);
     }
+  };
 
-    return (
-        <section className={styles.carousel}>
-            <button onClick={() => goBack()}>
-                {'<'}
-            </button>
-            {filteredCards}
-            <button onClick={() => goForward()}>{'>'}</button>
-        </section>
-    )
-}
+  return (
+    <section className={styles.carousel}>
+      <button onClick={() => back()}>{"<"}</button>
+      {info.slice(currentIndex, currentIndex + 3).map((card) => card)}
+      <button onClick={() => forward()}>{">"}</button>
+    </section>
+  );
+};
