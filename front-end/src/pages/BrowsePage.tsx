@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllSuperheroes } from "../services/superheroes-services";
 import styles from "./BrowsePage.module.scss";
+import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
+import { useModal } from "../context/ModalContext";
 
 export const BrowsePage = () => {
   const { data, isSuccess } = useQuery({
@@ -16,6 +18,8 @@ export const BrowsePage = () => {
   const navigate = useNavigate();
   const [startIndex, setStartIndex] = useState<number>(0);
   const [endIndex, setEndIndex] = useState<number>(30);
+
+  const { modalOpen } = useModal();
 
   let dataTotal = 0;
   if (isSuccess) {
@@ -65,6 +69,7 @@ export const BrowsePage = () => {
         ))}
       </section>
       <BrowseDisplay dataSlice={[startIndex, endIndex]} />
+      {modalOpen && <SuperheroModal/>}
     </>
   );
 };

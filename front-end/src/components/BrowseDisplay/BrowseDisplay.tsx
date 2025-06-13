@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllSuperheroes } from "../../services/superheroes-services";
-import { SuperHeroCard, type dbHero } from "../SuperheroCard/SuperheroCard";
+import { fetchAllSuperheroes, type Superhero } from "../../services/superheroes-services";
+import { SuperHeroCard } from "../SuperheroCard/SuperheroCard";
 import styles from "./BrowseDisplay.module.scss";
 // import { useEffect, useState } from "react";
 
@@ -14,8 +14,6 @@ export const BrowseDisplay = ({ dataSlice }: BrowseDisplayProps) => {
     queryFn: fetchAllSuperheroes,
   });
 
-  console.log("the slices" + dataSlice[0] + " " + dataSlice[1]);
-
   let dataPerPage = [];
 
   if (data) {
@@ -25,8 +23,8 @@ export const BrowseDisplay = ({ dataSlice }: BrowseDisplayProps) => {
   return (
     <section className={styles.browse_all}>
       {dataPerPage &&
-        dataPerPage.map((hero: dbHero) => (
-          <SuperHeroCard data={hero} key={hero.id} />
+        dataPerPage.map((hero: Superhero) => (
+          <SuperHeroCard superhero={hero} />
         ))}
     </section>
   );

@@ -6,6 +6,7 @@ import { NavButton } from "../components/NavButton/NavButton";
 import { Hero } from "../components/Hero/Hero";
 import { Carousel } from "../components/Carousel/Carousel";
 import { useNavigate } from "react-router";
+// import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
 
 export const Homepage = () => {
     const { data, status, error } = useQuery({
@@ -42,6 +43,7 @@ export const Homepage = () => {
         <NavButton handleClick={() => navigate("")}><h2>Search Superheroes by Name</h2></NavButton>
         <NavButton handleClick={() => navigate("/all")}><h2>Browse All</h2></NavButton>
       </header>
+      {/* <SuperheroModal superhero={data[0]}/> */}
     </>
   );
 
