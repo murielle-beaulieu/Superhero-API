@@ -8,7 +8,7 @@ import { Carousel } from "../components/Carousel/Carousel";
 import { useNavigate } from "react-router";
 
 export const Homepage = () => {
-  const { data, status, error } = useQuery({
+    const { data, status, error } = useQuery({
     queryKey: ["superheroes"],
     queryFn: fetchAllSuperheroes,
   });
@@ -16,7 +16,6 @@ export const Homepage = () => {
   const navigate = useNavigate();
 
   console.log(data);
-
 
   if (status === "pending") {
     return <span>Loading...</span>;
@@ -39,12 +38,10 @@ export const Homepage = () => {
         <h1>Hello Superheroes</h1>
       </Hero>
       <Carousel />
-      {/* <ul>
-        {data.map((hero) => (
-            <li key={hero.id}>{hero.name}</li>
-        ))}
-      </ul> */}
-      <button onClick={()=>navigate("")}></button>
+      <header>  
+        <NavButton handleClick={() => navigate("")}><h2>Search Superheroes by Name</h2></NavButton>
+        <NavButton handleClick={() => navigate("/all")}><h2>Browse All</h2></NavButton>
+      </header>
     </>
   );
 

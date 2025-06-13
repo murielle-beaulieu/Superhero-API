@@ -3,11 +3,7 @@ import { SuperHeroCard } from "../SuperheroCard/SuperheroCard";
 import styles from "./Carousel.module.scss";
 
 const info = [
-  <SuperHeroCard key={0} id={0} />,
-  <SuperHeroCard key={1} id={1} />,
-  <SuperHeroCard key={2} id={2} />,
-  <SuperHeroCard key={3} id={3} />,
-  <SuperHeroCard key={4} id={4} />,
+  <SuperHeroCard data={{"id":1,"name":"jeb"}} />,
 ];
 
 export const Carousel = () => {

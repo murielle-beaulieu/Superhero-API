@@ -6,3 +6,4 @@ export const fetchAllSuperheroes = async () => {
   console.log(response);
   return (await response.json());
 };
+
