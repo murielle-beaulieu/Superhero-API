@@ -1,0 +1,25 @@
+.bg {
+    background-color:rgba(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    top: 0;
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    position:fixed;
+    height: 50em;
+    width: 50em;
+    top: 5em;
+    background-color: rgb(255, 255, 255);
+}
