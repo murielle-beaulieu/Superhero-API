@@ -13,7 +13,7 @@ export const SuperheroModal = () => {
     return (
       <div className={styles.bg}>
         <section className={styles.modal}>
-            {/* The image takes a long time to load up, would need a skeleton or a loading time buffer */}
+            {/* The image takes a long time to load up, would need to implement a skeleton or a loading time buffer */}
           <img src={modalHero.images.sm} alt="Superhero Img" />
           <h3>{modalHero.name}</h3>
           <p>{modalHero.slug}</p>
