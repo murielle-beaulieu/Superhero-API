@@ -9,8 +9,6 @@ public class Powerstats {
 
     private int strength;
 
-    private int stength;
-
     private int speed;
 
     private int durability;
@@ -19,11 +17,3 @@ public class Powerstats {
 
     private int combat;
 }
-
-// "powerstats": 
-// "intelligence": 38,
-// "strength": 100,
-// "speed": 17,
-// "durability": 80,
-// "power": 24,
-// "combat": 64

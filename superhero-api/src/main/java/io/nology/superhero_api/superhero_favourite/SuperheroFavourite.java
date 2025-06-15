@@ -20,20 +20,33 @@ public class SuperheroFavourite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long superhero_id;
+    // @Column
+    // private Long superhero_id;
 
     @Column
-    private String superhero_name;
+    private String name;
 
     @Column
-    private String superhero_img;
+    private String slug;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "json")
+    private SuperheroImages images;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
     private Powerstats powerstats;
 
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "json")
+    private SuperheroAppearance appearance;
+
     @Column
     private Boolean deleted;
     // will add other information about the superhero later on
 }
+
+//   biography: SuperheroBiography;
+//   word: SuperheroWork;
+//   connections: SuperheroConnections;
+// }
