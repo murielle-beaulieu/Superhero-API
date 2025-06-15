@@ -8,6 +8,7 @@ import { fetchAllSuperheroes } from "../services/superheroes-services";
 import styles from "./BrowsePage.module.scss";
 import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
 import { useModal } from "../context/ModalContext";
+import { SearchBar } from "../components/SearchBar/SearchBar";
 
 export const BrowsePage = () => {
   const { data, isSuccess } = useQuery({
@@ -59,9 +60,10 @@ export const BrowsePage = () => {
       </Navbar>
       <header>
         <h1>Browse All Heroes</h1>
-        <NavButton handleClick={() => console.log("search fn")}>
+        {/* <NavButton handleClick={() => console.log("search fn")}>
           <h3>Search</h3>
-        </NavButton>
+        </NavButton> */}
+        <SearchBar/>
       </header>
       <section className={styles.btn_arr}>
         {btnArr.map((x) => (
