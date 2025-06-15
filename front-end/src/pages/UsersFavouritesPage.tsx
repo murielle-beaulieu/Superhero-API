@@ -8,7 +8,7 @@ import { fetchAllSuperheroesFavourites } from "../services/favourites-services";
 export const UsersFavouritesPage = () => {
   const navigate = useNavigate();
 
-const { data: favouritesData } = useQuery({
+  const { data: favouritesData } = useQuery({
     queryKey: ["favourites"],
     queryFn: fetchAllSuperheroesFavourites,
   });
@@ -17,20 +17,20 @@ const { data: favouritesData } = useQuery({
     <>
       <Navbar>
         {
-          <NavButton handleClick={() => navigate("/")}>
-            <h3>Return to homepage</h3>
-          </NavButton>
+          <NavButton
+            handleClick={() => navigate("/")}
+            innerText={"Return to homepage"}
+          />
         }
       </Navbar>
       <header>
         <h1>Your Superheroes Favourites</h1>
         <NavButton
           handleClick={() => console.log("searching for a specific hero")}
-        >
-          <h2>Search from your favourites heroes</h2>
-        </NavButton>
+          innerText={"Search from your favourites heroes"}
+        />
       </header>
-      <CardContainer data={favouritesData}/>
+      <CardContainer data={favouritesData} />
     </>
   );
 };

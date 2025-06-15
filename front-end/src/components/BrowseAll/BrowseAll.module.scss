@@ -1,0 +1,12 @@
+.btn_arr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 2em;
+        width: 2em;
+    }
+}

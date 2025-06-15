@@ -23,6 +23,7 @@ export const SearchContextProvider = ({children}: SearchContextProviderProps) =>
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSearch = (): SearchContext => {
   const context = useContext(SearchContext);
   if (!context) {
