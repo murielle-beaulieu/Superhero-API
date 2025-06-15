@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllSuperheroes } from "../services/superheroes-services";
-// import { fetchAllSuperheroesFavourites } from "../services/favourites-services";
 import { Navbar } from "../components/Navbar/Navbar";
 import { NavButton } from "../components/NavButton/NavButton";
 import { Hero } from "../components/Hero/Hero";
 import { Carousel } from "../components/Carousel/Carousel";
 import { useNavigate } from "react-router";
-// import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
 
 export const Homepage = () => {
   const { data, status, error } = useQuery({
@@ -15,8 +13,6 @@ export const Homepage = () => {
   });
 
   const navigate = useNavigate();
-
-  // console.log(data);
 
   if (status === "pending") {
     return <span>Loading...</span>;
@@ -30,15 +26,19 @@ export const Homepage = () => {
     const randomStartingIndex = Math.floor(Math.random() * data.length);
     console.log(randomStartingIndex);
 
-    const carouselHeroesSlice = data.slice(randomStartingIndex, randomStartingIndex + 5);
+    const carouselHeroesSlice = data.slice(
+      randomStartingIndex,
+      randomStartingIndex + 5
+    );
 
     return (
       <>
         <Navbar>
           {
-            <NavButton handleClick={() => navigate("/favourites")}>
-              <h3>See All Your Favourites</h3>
-            </NavButton>
+            <NavButton
+              handleClick={() => navigate("/favourites")}
+              innerText={"See All Your Favourites"}
+            />
           }
         </Navbar>
         <Hero>
@@ -46,14 +46,15 @@ export const Homepage = () => {
         </Hero>
         <Carousel carouselHeroesSlice={carouselHeroesSlice} />
         <header>
-          <NavButton handleClick={() => navigate("")}>
-            <h2>Search Superheroes by Name</h2>
-          </NavButton>
-          <NavButton handleClick={() => navigate("/all")}>
-            <h2>Browse All</h2>
-          </NavButton>
+          <NavButton
+            handleClick={() => navigate("")}
+            innerText={"Search Superheroes by Name"}
+          />
+          <NavButton
+            handleClick={() => navigate("/all")}
+            innerText={"Browse All"}
+          />
         </header>
-        {/* <SuperheroModal superhero={data[0]}/> */}
       </>
     );
   }

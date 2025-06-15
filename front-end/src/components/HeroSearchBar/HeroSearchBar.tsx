@@ -4,44 +4,46 @@ import {
   type Superhero,
 } from "../../services/superheroes-services";
 import { useQuery } from "@tanstack/react-query";
+import { useSearch } from "../../context/SearchContext";
 
-export const SearchBar = () => {
+export const HeroSearchBar = () => {
   const [inputValue, setInputValue] = useState("");
-  const [includedValue, setIncludedValue] = useState([]);
 
   const { data, isSuccess } = useQuery({
     queryKey: ["superheroes"],
     queryFn: fetchAllSuperheroes,
   });
 
+  const { setSearchResult } = useSearch();
+
   useEffect(() => {
     if (isSuccess && data) {
-      setIncludedValue(data);
+      setSearchResult(data);
     }
-  }, [data, isSuccess]);
+  }, [data, isSuccess, setSearchResult]);
 
   useEffect(() => {
     const filtered = data.filter((hero: Superhero) =>
       hero.name.toLowerCase().includes(inputValue.toLowerCase().trim())
     );
-    setIncludedValue(filtered);
-  }, [data, inputValue]);
-
-  console.log(includedValue);
+    setSearchResult(filtered);
+  }, [data, inputValue, setSearchResult]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
-  if (data) {
+  if (isSuccess) {
     return (
-      <form>
-        <label>
-          Input Value:
-          <input type="text" value={inputValue} onChange={handleChange} />
-        </label>
-        <p>Input Value: {inputValue}</p>
-      </form>
+      <>
+        <form>
+          <label>
+            Input Value:
+            <input type="text" value={inputValue} onChange={handleChange} />
+          </label>
+          <p>Input Value: {inputValue}</p>
+        </form>
+      </>
     );
   }
 };
