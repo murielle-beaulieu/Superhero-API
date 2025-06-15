@@ -5,13 +5,19 @@ import lombok.Data;
 @Data
 public class CreateSuperheroFavouriteDTO {
 
-    private Long superhero_id;
+    // private int superhero_id;
 
-    private String superhero_name;
+    private String name;
 
-    private String superhero_img;
+    private String slug;
+
+    private SuperheroImages images;
 
     private Powerstats powerstats;
 
-    private Boolean deleted = false;
+    private SuperheroAppearance appearance;
+
+    private  Boolean deleted = false;
+    // will add other information about the superhero later on
 }
+
