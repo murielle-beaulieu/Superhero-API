@@ -10,7 +10,7 @@ export const CardContainer = ({data}: CardContainerProps) => {
     console.log(data);
     return (
         <section className={styles.card_container}>
-        {data && data.map((hero) => <SuperHeroFavouriteCard data={hero}/>)}
+        {data && data.map((hero) => <SuperHeroFavouriteCard favourite={hero} />)}
         </section>
     )
 }
