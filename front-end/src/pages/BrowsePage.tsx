@@ -8,7 +8,8 @@ import { fetchAllSuperheroes } from "../services/superheroes-services";
 import styles from "./BrowsePage.module.scss";
 import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
 import { useModal } from "../context/ModalContext";
-import { SearchBar } from "../components/SearchBar/SearchBar";
+import { HeroSearchBar } from "../components/HeroSearchBar/HeroSearchBar";
+import { ResultDisplay } from "../components/ResultDisplay/ResultDisplay";
 
 export const BrowsePage = () => {
   const { data, isSuccess } = useQuery({
@@ -19,6 +20,8 @@ export const BrowsePage = () => {
   const navigate = useNavigate();
   const [startIndex, setStartIndex] = useState<number>(0);
   const [endIndex, setEndIndex] = useState<number>(30);
+
+  const [browseMode, setBrowseMode] = useState<string>("browseAll");
 
   const { modalOpen } = useModal();
 
@@ -52,26 +55,51 @@ export const BrowsePage = () => {
             <NavButton handleClick={() => navigate("/")}>
               <h3>Home</h3>
             </NavButton>
+            {browseMode == "browseAll" ? (
+              <NavButton handleClick={() => setBrowseMode("search")}>
+                <h3>Search by Name</h3>
+              </NavButton>
+            ) : (
+              <NavButton handleClick={() => setBrowseMode("browseAll")}>
+                <h3>Browse All</h3>
+              </NavButton>
+            )}
             <NavButton handleClick={() => navigate("/favourites")}>
               <h3>See All Your Favourites</h3>
             </NavButton>
           </div>
         }
       </Navbar>
-      <header>
-        <h1>Browse All Heroes</h1>
-        {/* <NavButton handleClick={() => console.log("search fn")}>
-          <h3>Search</h3>
-        </NavButton> */}
-        <SearchBar/>
-      </header>
-      <section className={styles.btn_arr}>
-        {btnArr.map((x) => (
-          <NavButton handleClick={() => pageChange(x)}>{x + 1}</NavButton>
-        ))}
-      </section>
-      <BrowseDisplay dataSlice={[startIndex, endIndex]} />
-      {modalOpen && <SuperheroModal/>}
+      {browseMode == "browseAll" ? (
+        ////////
+        /* this needs to be one component */
+        <>
+          <header>
+            <h1>Browse All Heroes</h1>
+          </header>
+          <section className={styles.btn_arr}>
+            {btnArr.map((x) => (
+              <NavButton handleClick={() => pageChange(x)}>{x + 1}</NavButton>
+            ))}
+          </section>
+          <BrowseDisplay dataSlice={[startIndex, endIndex]} />
+          {modalOpen && <SuperheroModal />}
+        </>
+        /* this needs to be one component */
+        //////
+      ) : (
+        /********/
+        /* this needs to be another component */
+        <>
+          <header>
+            <h1>Search Heroes by Name</h1>
+          </header>
+          <HeroSearchBar />
+          <ResultDisplay />
+        </>
+        /* this needs to be another component */
+        /********/
+      )}
     </>
   );
 };
