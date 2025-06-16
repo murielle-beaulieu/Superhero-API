@@ -35,10 +35,13 @@ export const createSuperheroFavourite = async (data: SuperheroFavourite) => {
   return (await response.json()) as SuperheroFavourite;
 }
 
-export const updateSuperheroFavourite = async( updatedData: SuperheroPowerstats, id: number,) => {
-  const response = await fetch("http://localhost:8080/sh_favourites/" + id, {
+export const updateSuperheroFavourite = async( hero: { id: string, powerstats: SuperheroPowerstats}) => {
+  console.log(hero.powerstats)
+  console.log("http://localhost:8080/sh_favourites/" + hero.id);
+  const response = await fetch("http://localhost:8080/sh_favourites/" + hero.id, {
     method: "PUT",
-    body: JSON.stringify(updatedData),
+    // body: JSON.stringify(hero.powerstats),
+    body: JSON.stringify({ powerstats: hero.powerstats }),
     headers: {
       "Content-Type": "application/json",
     }

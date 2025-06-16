@@ -11,8 +11,6 @@ export const SuperHeroFavouriteCard = ({
 }: SuperHeroFavouriteCardProps) => {
   console.log(favourite);
 
-  const power = {"power": 100, "speed": 42, "combat": 610, "stength": 0, "strength": 44, "durability": 75, "intelligence": 63};
-
 const mutation = useMutation({
   mutationFn: updateSuperheroFavourite,
     onSuccess: (res) => {
@@ -23,20 +21,14 @@ const mutation = useMutation({
     },
 })
 
-// mutation.mutate({
-//   id: 5,
-//   name: 'Do the laundry',
-// })
-
-// // The query below will be updated with the response from the
-// // successful mutation
-// const { status, data, error } = useQuery({
-//   queryKey: ['todo', { id: 5 }],
-//   queryFn: fetchTodoById,
-// })
-
   const updateFavourites = (selectedHero: SuperheroFavourite) => {
-    mutation.mutate(selectedHero.powerstats, selectedHero.id)
+    console.log(selectedHero.powerstats)
+    mutation.mutate({ id: `${selectedHero.id}`, powerstats: {intelligence: 1,
+    "strength": 1,
+    "speed": 700,
+    "durability": 700,
+    "power": 700,
+    "combat": 700}})
   };
 
   return (
@@ -51,7 +43,7 @@ const mutation = useMutation({
         <p>Power: {favourite.powerstats.power}</p>
       </div>
 
-      <button onClick={() => updateFavourites}>Update</button>
+      <button onClick={() => updateFavourites(favourite)}>Update</button>
     </div>
   );
 };
