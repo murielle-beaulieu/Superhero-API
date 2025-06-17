@@ -1,20 +1,20 @@
-interface SuperheroPowerstats {
-  intelligence: number;
-  strength: number;
-  speed: number;
-  durability: number;
-  power: number;
-  combat: number;
+export interface SuperheroPowerstats {
+  intelligence: string;
+  strength: string;
+  speed: string;
+  durability: string;
+  power: string;
+  combat: string;
 }
 
-interface SuperheroImages {
+export interface SuperheroImages {
   xs: string;
   sm: string;
   md: string;
   lg: string;
 }
 
-interface SuperheroAppearance {
+export interface SuperheroAppearance {
   gender: string;
   race: string;
   height: string[];
@@ -23,7 +23,7 @@ interface SuperheroAppearance {
   hairColor: string;
 }
 
-interface SuperheroBiography {
+export interface SuperheroBiography {
   fullName: string;
   alterEgos: string;
   aliases: string[];
@@ -33,18 +33,18 @@ interface SuperheroBiography {
   alignment: string;
 }
 
-interface SuperheroWork {
+export interface SuperheroWork {
   occupation: string;
   base: string;
 }
 
-interface SuperheroConnections {
+export interface SuperheroConnections {
   groupAffiliation: string;
   relatives: string;
 }
 
 export interface Superhero {
-  id: number;
+  // id: number; 
   name: string;
   slug: string;
   powerstats: SuperheroPowerstats

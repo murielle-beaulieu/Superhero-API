@@ -13,6 +13,7 @@ export const UsersFavouritesPage = () => {
     queryFn: fetchAllSuperheroesFavourites,
   });
 
+
   return (
     <>
       <Navbar>

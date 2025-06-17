@@ -40,6 +40,8 @@ public class SuperheroFavouriteService {
             return null;
         }
         SuperheroFavourite found = result.get();
+        System.out.println("our hero: " + found.getName());
+        System.out.println("data provided: " + data);
         mapper.map(data, found);
         return this.repo.save(found);
     }
