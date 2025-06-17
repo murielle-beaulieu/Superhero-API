@@ -40,14 +40,13 @@ export const updateSuperheroFavourite = async( hero: { id: string, powerstats: S
   console.log("http://localhost:8080/sh_favourites/" + hero.id);
   const response = await fetch("http://localhost:8080/sh_favourites/" + hero.id, {
     method: "PUT",
-    // body: JSON.stringify(hero.powerstats),
     body: JSON.stringify({ powerstats: hero.powerstats }),
     headers: {
       "Content-Type": "application/json",
     }
   })
     if (!response.ok) {
-    throw new Error("Failed to create a superhero favourite");
+    throw new Error("Failed to update a superhero favourite");
   }
   return (await response.json()) as SuperheroFavourite;
 }

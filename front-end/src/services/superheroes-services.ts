@@ -1,10 +1,10 @@
 export interface SuperheroPowerstats {
-  intelligence: number;
-  strength: number;
-  speed: number;
-  durability: number;
-  power: number;
-  combat: number;
+  intelligence: string;
+  strength: string;
+  speed: string;
+  durability: string;
+  power: string;
+  combat: string;
 }
 
 export interface SuperheroImages {

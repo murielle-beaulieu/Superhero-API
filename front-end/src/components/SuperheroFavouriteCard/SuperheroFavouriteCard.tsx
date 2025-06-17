@@ -1,6 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import { updateSuperheroFavourite, type SuperheroFavourite } from "../../services/favourites-services";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  updateSuperheroFavourite,
+  type SuperheroFavourite,
+} from "../../services/favourites-services";
 import styles from "./SuperHeroFavouriteCard.module.scss";
+import { UpdateForm } from "../UpdateForm/UpdateForm";
+import type { UpdateData } from "../UpdateForm/update-schema";
 
 interface SuperHeroFavouriteCardProps {
   favourite: SuperheroFavourite;
@@ -9,26 +14,20 @@ interface SuperHeroFavouriteCardProps {
 export const SuperHeroFavouriteCard = ({
   favourite,
 }: SuperHeroFavouriteCardProps) => {
-  console.log(favourite);
-
-const mutation = useMutation({
-  mutationFn: updateSuperheroFavourite,
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: updateSuperheroFavourite,
     onSuccess: (res) => {
       console.log(res);
+      queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },
     onError: (err) => {
       console.log(err);
     },
-})
+  });
 
-  const updateFavourites = (selectedHero: SuperheroFavourite) => {
-    console.log(selectedHero.powerstats)
-    mutation.mutate({ id: `${selectedHero.id}`, powerstats: {intelligence: 1,
-    "strength": 1,
-    "speed": 700,
-    "durability": 700,
-    "power": 700,
-    "combat": 700}})
+  const handleUpdate = (data: UpdateData) => {
+    mutation.mutate({ id: `${favourite.id}`, powerstats: data });
   };
 
   return (
@@ -42,8 +41,7 @@ const mutation = useMutation({
         <p>Intelligence: {favourite.powerstats.intelligence}</p>
         <p>Power: {favourite.powerstats.power}</p>
       </div>
-
-      <button onClick={() => updateFavourites(favourite)}>Update</button>
+      <UpdateForm onSubmit={handleUpdate} />
     </div>
   );
 };
