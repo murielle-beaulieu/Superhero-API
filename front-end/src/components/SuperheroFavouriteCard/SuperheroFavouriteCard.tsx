@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
+  deleteSuperheroFavourite,
   updateSuperheroFavourite,
   type SuperheroFavourite,
 } from "../../services/favourites-services";
@@ -15,7 +16,7 @@ export const SuperHeroFavouriteCard = ({
   favourite,
 }: SuperHeroFavouriteCardProps) => {
   const queryClient = useQueryClient();
-  const mutation = useMutation({
+  const updateMutation = useMutation({
     mutationFn: updateSuperheroFavourite,
     onSuccess: (res) => {
       console.log(res);
@@ -26,8 +27,24 @@ export const SuperHeroFavouriteCard = ({
     },
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: deleteSuperheroFavourite,
+    onSuccess: (res) => {
+      console.log(res);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
   const handleUpdate = (data: UpdateData) => {
-    mutation.mutate({ id: `${favourite.id}`, powerstats: data });
+    console.log(data)
+    updateMutation.mutate({ id: `${favourite.id}`, powerstats: data });
+  };
+
+  const deleteFavourite = (id: number) => {
+    console.log("delete this favourite: " + id);
+    deleteMutation.mutate(id)
   };
 
   return (
@@ -41,7 +58,9 @@ export const SuperHeroFavouriteCard = ({
         <p>Intelligence: {favourite.powerstats.intelligence}</p>
         <p>Power: {favourite.powerstats.power}</p>
       </div>
-      <UpdateForm onSubmit={handleUpdate} />
+      <h3>Deleted? : {favourite.deleted? <p>Yes</p> : <p>No</p>}</h3>
+      <UpdateForm onSubmit={handleUpdate} currentPowerstats={favourite.powerstats} />
+      <button onClick={() => deleteFavourite(favourite.id)}>Delete from Favourite</button>
     </div>
   );
 };
