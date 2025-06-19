@@ -10,6 +10,7 @@ export interface SuperheroFavourite {
   biography: SuperheroBiography;
   word: SuperheroWork;
   connections: SuperheroConnections;
+  deleted: boolean;
 }
 
 export const fetchAllSuperheroesFavourites = async () => {
@@ -21,10 +22,10 @@ export const fetchAllSuperheroesFavourites = async () => {
   return (await response.json());
 };
 
-export const createSuperheroFavourite = async (data: SuperheroFavourite) => {
+export const createSuperheroFavourite = async (hero: SuperheroFavourite) => {
   const response = await fetch("http://localhost:8080/sh_favourites", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(hero),
     headers: {
       "Content-Type": "application/json",
     }
@@ -49,4 +50,16 @@ export const updateSuperheroFavourite = async( hero: { id: string, powerstats: S
     throw new Error("Failed to update a superhero favourite");
   }
   return (await response.json()) as SuperheroFavourite;
+}
+
+export const deleteSuperheroFavourite = async (favouriteId: number ) => {
+   const response = await fetch("http://localhost:8080/sh_favourites/" + favouriteId, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+   if (!response.ok) {
+    throw new Error("Failed to update a superhero favourite");
+  }
 }
