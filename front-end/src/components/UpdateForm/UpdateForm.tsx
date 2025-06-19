@@ -1,21 +1,31 @@
 import { useForm } from "react-hook-form";
 import { schema, type UpdateData } from "./update-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
+import type { SuperheroPowerstats } from "../../services/superheroes-services";
 
 interface UpdateProps {
   onSubmit: (data: UpdateData) => unknown;
+  currentPowerstats: SuperheroPowerstats;
 }
 
-export const UpdateForm = ({ onSubmit }: UpdateProps) => {
+export const UpdateForm = ({ onSubmit, currentPowerstats }: UpdateProps) => {
+    
   const {
     handleSubmit,
     register,
     reset,
     formState: { isSubmitSuccessful, errors },
-  } = useForm<UpdateData>({ resolver: zodResolver(schema) });
+  } = useForm<UpdateData>({defaultValues: currentPowerstats, resolver: zodResolver(schema) });
 
   console.log("successful: " + isSubmitSuccessful + " " + errors + "");
-  
+
+    useEffect(() => {
+    if (currentPowerstats) {
+      reset(currentPowerstats);
+    }
+  }, [currentPowerstats, reset]);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   isSubmitSuccessful && reset();
 

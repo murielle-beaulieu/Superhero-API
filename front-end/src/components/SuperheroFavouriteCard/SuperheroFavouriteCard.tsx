@@ -38,6 +38,7 @@ export const SuperHeroFavouriteCard = ({
   });
 
   const handleUpdate = (data: UpdateData) => {
+    console.log(data)
     updateMutation.mutate({ id: `${favourite.id}`, powerstats: data });
   };
 
@@ -58,7 +59,7 @@ export const SuperHeroFavouriteCard = ({
         <p>Power: {favourite.powerstats.power}</p>
       </div>
       <h3>Deleted? : {favourite.deleted? <p>Yes</p> : <p>No</p>}</h3>
-      <UpdateForm onSubmit={handleUpdate} />
+      <UpdateForm onSubmit={handleUpdate} currentPowerstats={favourite.powerstats} />
       <button onClick={() => deleteFavourite(favourite.id)}>Delete from Favourite</button>
     </div>
   );

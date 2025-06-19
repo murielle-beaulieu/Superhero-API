@@ -5,15 +5,15 @@ import lombok.Data;
 @Data
 public class Powerstats {
     
-    private int intelligence;
+    private String intelligence;
 
-    private int strength;
+    private String strength;
 
-    private int speed;
+    private String speed;
 
-    private int durability;
+    private String durability;
 
-    private int power;
+    private String power;
 
-    private int combat;
+    private String combat;
 }
