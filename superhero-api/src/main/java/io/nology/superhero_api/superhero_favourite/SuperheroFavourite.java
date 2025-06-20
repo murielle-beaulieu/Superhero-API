@@ -20,9 +20,6 @@ public class SuperheroFavourite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @Column
-    // private Long superhero_id;
-
     @Column
     private String name;
 

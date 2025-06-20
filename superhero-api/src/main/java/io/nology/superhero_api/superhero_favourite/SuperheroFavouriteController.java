@@ -31,6 +31,12 @@ public class SuperheroFavouriteController {
        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<List<SuperheroFavourite>> getAllActiveSuperheroFavourites() {
+       List<SuperheroFavourite> all = superheroService.getAllActiveSuperheroFavourites();
+       return new ResponseEntity<>(all, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<SuperheroFavourite> getSuperheroFavouriteById(@PathVariable Long id) {
         SuperheroFavourite result = superheroService.getSuperheroFavouriteById(id);

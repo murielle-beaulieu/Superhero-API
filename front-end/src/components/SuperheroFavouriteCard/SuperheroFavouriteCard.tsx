@@ -16,6 +16,7 @@ export const SuperHeroFavouriteCard = ({
   favourite,
 }: SuperHeroFavouriteCardProps) => {
   const queryClient = useQueryClient();
+  
   const updateMutation = useMutation({
     mutationFn: updateSuperheroFavourite,
     onSuccess: (res) => {

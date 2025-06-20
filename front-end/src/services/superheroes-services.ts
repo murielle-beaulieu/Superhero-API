@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export interface SuperheroPowerstats {
   intelligence: string;
   strength: string;
@@ -56,11 +58,11 @@ export interface Superhero {
 }
 
 export const fetchAllSuperheroes = async () => {
-  const response = await fetch("https://akabab.github.io/superhero-api/api/all.json");
-  if (!response.ok) {
-    throw new Error("Failed to fetch");
-  }
-  console.log(response);
-  return (await response.json());
+  return axios.get("https://akabab.github.io/superhero-api/api/all.json")
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error('Error fetching data:', error);
+    });
 };
-
