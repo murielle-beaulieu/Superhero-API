@@ -5,24 +5,28 @@ import { NavButton } from "../components/NavButton/NavButton";
 import { Hero } from "../components/Hero/Hero";
 import { Carousel } from "../components/Carousel/Carousel";
 import { useNavigate } from "react-router";
+import { useModal } from "../context/ModalContext";
+import { SuperheroModal } from "../components/SuperheroModal/SuperheroModal";
 
 export const Homepage = () => {
-  const { data, status, error } = useQuery({
+  const { data, isLoading, isSuccess, isError, error } = useQuery({
     queryKey: ["superheroes"],
     queryFn: fetchAllSuperheroes,
   });
 
   const navigate = useNavigate();
 
-  if (status === "pending") {
+  const { modalOpen } = useModal();
+
+  if (isLoading) {
     return <span>Loading...</span>;
   }
 
-  if (status === "error") {
+  if (isError) {
     return <span>Error: {error.message}</span>;
   }
 
-  if (data) {
+  if (isSuccess) {
     const randomStartingIndex = Math.floor(Math.random() * data.length);
     console.log(randomStartingIndex);
 
@@ -55,6 +59,7 @@ export const Homepage = () => {
             innerText={"Browse All"}
           />
         </header>
+        {modalOpen && <SuperheroModal />}
       </>
     );
   }

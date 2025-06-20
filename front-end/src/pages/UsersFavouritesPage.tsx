@@ -25,12 +25,8 @@ export const UsersFavouritesPage = () => {
 
   if (isSuccess) {
 
-  // const favouritesData = JSON.parse(data);
-
     return (
       <>
-      {/* <p>y</p> */}
-      {/* {console.log(favouritesData as JSON)} */}
         <Navbar>
           {
             <NavButton

@@ -46,7 +46,6 @@ export interface SuperheroConnections {
 }
 
 export interface Superhero {
-  // id: number; 
   name: string;
   slug: string;
   powerstats: SuperheroPowerstats
@@ -57,10 +56,10 @@ export interface Superhero {
   connections: SuperheroConnections;
 }
 
-export const fetchAllSuperheroes = async () => {
+export const fetchAllSuperheroes = () => {
   return axios.get("https://akabab.github.io/superhero-api/api/all.json")
     .then(function (response) {
-      console.log(response.data);
+      return response.data;
     })
     .catch(function (error) {
       console.error('Error fetching data:', error);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { SuperheroAppearance, SuperheroBiography, SuperheroConnections, SuperheroImages, SuperheroPowerstats, SuperheroWork } from "./superheroes-services";
+import type { Superhero, SuperheroAppearance, SuperheroBiography, SuperheroConnections, SuperheroImages, SuperheroPowerstats, SuperheroWork } from "./superheroes-services";
 
 export interface SuperheroFavourite {
   id: number;
@@ -25,7 +25,7 @@ export const fetchAllSuperheroesFavourites = () => {
 
 };
 
-export const createSuperheroFavourite = (hero: SuperheroFavourite) => {
+export const createSuperheroFavourite = (hero: Superhero) => {
   return axios.post("http://localhost:8080/sh_favourites", hero)
     .then(function (response) {
       console.log(response.data);
