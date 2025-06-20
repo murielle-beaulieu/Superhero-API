@@ -23,7 +23,7 @@ export const SuperHeroCard = ({superhero}: SuperheroCardProps) => {
 
   if (superhero) {
     return (
-        <div className={styles.card} key={superhero.id} onClick={() => openModal(superhero)}>
+        <div className={styles.card} key={superhero.name} onClick={() => openModal(superhero)}>
             {/* I would want the image of the superhero as a cover and on hover the name and "click to see more" */}
             <p>{superhero.name}</p>
         </div>

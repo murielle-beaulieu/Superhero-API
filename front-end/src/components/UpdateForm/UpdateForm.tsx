@@ -15,10 +15,8 @@ export const UpdateForm = ({ onSubmit, currentPowerstats }: UpdateProps) => {
     handleSubmit,
     register,
     reset,
-    formState: { isSubmitSuccessful, errors },
+    formState: { isSubmitSuccessful },
   } = useForm<UpdateData>({defaultValues: currentPowerstats, resolver: zodResolver(schema) });
-
-  console.log("successful: " + isSubmitSuccessful + " " + errors + "");
 
     useEffect(() => {
     if (currentPowerstats) {

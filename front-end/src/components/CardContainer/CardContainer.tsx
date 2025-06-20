@@ -1,16 +1,16 @@
 import type { SuperheroFavourite } from "../../services/favourites-services"
-import { SuperHeroFavouriteCard } from "../SuperheroFavouriteCard/SuperheroFavouriteCard"
+import { SuperHeroFavouriteCard } from "../SuperheroFavouriteCard/SuperheroFavouriteCard";
 import styles from "./CardContainer.module.scss"
 
 interface CardContainerProps {
-    data: SuperheroFavourite[];
+    favouritesList: SuperheroFavourite[];
 }
 
-export const CardContainer = ({data}: CardContainerProps) => {
-    console.log(data);
-    return (
+export const CardContainer = ({favouritesList}: CardContainerProps) => {
+    console.log(favouritesList);
+    if (favouritesList) return (
         <section className={styles.card_container}>
-        {data && data.map((hero) => <SuperHeroFavouriteCard favourite={hero} />)}
+        { favouritesList.map((hero: SuperheroFavourite) => <SuperHeroFavouriteCard favourite={hero} />)}
         </section>
     )
 }

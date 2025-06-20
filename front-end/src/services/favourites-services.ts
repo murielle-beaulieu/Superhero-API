@@ -1,4 +1,5 @@
-import type { SuperheroAppearance, SuperheroBiography, SuperheroConnections, SuperheroImages, SuperheroPowerstats, SuperheroWork } from "./superheroes-services";
+import axios from "axios";
+import type { Superhero, SuperheroAppearance, SuperheroBiography, SuperheroConnections, SuperheroImages, SuperheroPowerstats, SuperheroWork } from "./superheroes-services";
 
 export interface SuperheroFavourite {
   id: number;
@@ -13,53 +14,43 @@ export interface SuperheroFavourite {
   deleted: boolean;
 }
 
-export const fetchAllSuperheroesFavourites = async () => {
-  const response = await fetch("http://localhost:8080/sh_favourites");
-  console.log(response);
-  if (!response.ok) {
-    throw new Error("Failed to fetch");
-  }
-  return (await response.json());
+export const fetchAllSuperheroesFavourites = () => {
+  return axios.get("http://localhost:8080/sh_favourites/active")
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.error('Error fetching data:', error);
+    });
+
 };
 
-export const createSuperheroFavourite = async (hero: SuperheroFavourite) => {
-  const response = await fetch("http://localhost:8080/sh_favourites", {
-    method: "POST",
-    body: JSON.stringify(hero),
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    if (!response.ok) {
-    throw new Error("Failed to create a superhero favourite");
-  }
-  return (await response.json()) as SuperheroFavourite;
+export const createSuperheroFavourite = (hero: Superhero) => {
+  return axios.post("http://localhost:8080/sh_favourites", hero)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error); // Handle errors
+    });
 }
 
-export const updateSuperheroFavourite = async( hero: { id: string, powerstats: SuperheroPowerstats}) => {
-  console.log(hero.powerstats)
-  console.log("http://localhost:8080/sh_favourites/" + hero.id);
-  const response = await fetch("http://localhost:8080/sh_favourites/" + hero.id, {
-    method: "PUT",
-    body: JSON.stringify({ powerstats: hero.powerstats }),
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    if (!response.ok) {
-    throw new Error("Failed to update a superhero favourite");
-  }
-  return (await response.json()) as SuperheroFavourite;
+export const updateSuperheroFavourite = (hero: { id: string, powerstats: SuperheroPowerstats }) => {
+  return axios.put("http://localhost:8080/sh_favourites/" + hero.id, { powerstats: hero.powerstats })
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error); // Handle errors
+    });
 }
 
-export const deleteSuperheroFavourite = async (favouriteId: number ) => {
-   const response = await fetch("http://localhost:8080/sh_favourites/" + favouriteId, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-   if (!response.ok) {
-    throw new Error("Failed to update a superhero favourite");
-  }
+export const deleteSuperheroFavourite = async (favouriteId: number) => {
+  return axios.delete("http://localhost:8080/sh_favourites/" + favouriteId)
+    .then(response => {
+      console.log("Resource deleted: " + response.data);
+    })
+    .catch(error => {
+      console.error("Error deleting resource:", error);
+    });
 }

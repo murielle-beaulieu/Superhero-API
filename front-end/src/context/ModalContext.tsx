@@ -1,11 +1,11 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { SuperheroFavourite } from "../services/favourites-services";
+import type { Superhero } from "../services/superheroes-services";
 
 interface ModalContext {
     modalOpen: boolean;
     setModalOpen: (open: boolean) => void;
-    modalHero: SuperheroFavourite | null;
-    setModalHero: (superhero: SuperheroFavourite | null) => void;
+    modalHero: Superhero | null;
+    setModalHero: (superhero: Superhero | null) => void;
 }
 
 const ModalContext = createContext< ModalContext | undefined>(undefined);
@@ -17,7 +17,7 @@ children: ReactNode;
 export const ModalContextProvider = ({children}: ModalContextProviderProps) => {
 
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [modalHero, setModalHero] = useState<SuperheroFavourite | null>(null);
+    const [modalHero, setModalHero] = useState<Superhero| null>(null);
 
     return (
         <ModalContext.Provider value={{modalOpen, setModalOpen, modalHero, setModalHero}} >

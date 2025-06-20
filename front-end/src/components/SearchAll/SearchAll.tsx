@@ -1,7 +1,11 @@
+import { useModal } from "../../context/ModalContext";
 import { HeroSearchBar } from "../HeroSearchBar/HeroSearchBar";
 import { ResultDisplay } from "../ResultDisplay/ResultDisplay";
+import { SuperheroModal } from "../SuperheroModal/SuperheroModal";
 
 export const SearchAll = () => {
+  const { modalOpen } = useModal();
+
   return (
     <>
       <header>
@@ -9,6 +13,7 @@ export const SearchAll = () => {
       </header>
       <HeroSearchBar />
       <ResultDisplay />
+      {modalOpen && <SuperheroModal />}
     </>
   );
 };

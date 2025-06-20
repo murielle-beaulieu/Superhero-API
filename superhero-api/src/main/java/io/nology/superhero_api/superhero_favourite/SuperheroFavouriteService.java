@@ -2,6 +2,7 @@ package io.nology.superhero_api.superhero_favourite;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class SuperheroFavouriteService {
 
     public List<SuperheroFavourite> getAllSuperheroFavourites() {
         return repo.findAll();
+    }
+
+    public List<SuperheroFavourite> getAllActiveSuperheroFavourites() {
+      List<SuperheroFavourite> all = getAllSuperheroFavourites();
+      return all.stream().filter(hero -> hero.getDeleted() != Boolean.TRUE).collect(Collectors.toList());
     }
 
     public SuperheroFavourite getSuperheroFavouriteById(Long id) {
@@ -40,8 +46,6 @@ public class SuperheroFavouriteService {
             return null;
         }
         SuperheroFavourite found = result.get();
-        System.out.println("our hero: " + found.getName());
-        System.out.println("data provided: " + data);
         mapper.map(data, found);
         return this.repo.save(found);
     }

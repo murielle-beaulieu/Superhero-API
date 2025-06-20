@@ -16,10 +16,10 @@ export const SuperHeroFavouriteCard = ({
   favourite,
 }: SuperHeroFavouriteCardProps) => {
   const queryClient = useQueryClient();
+
   const updateMutation = useMutation({
     mutationFn: updateSuperheroFavourite,
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },
     onError: (err) => {
@@ -29,8 +29,8 @@ export const SuperHeroFavouriteCard = ({
 
   const deleteMutation = useMutation({
     mutationFn: deleteSuperheroFavourite,
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },
     onError: (err) => {
       console.log(err);
@@ -38,13 +38,15 @@ export const SuperHeroFavouriteCard = ({
   });
 
   const handleUpdate = (data: UpdateData) => {
-    console.log(data)
     updateMutation.mutate({ id: `${favourite.id}`, powerstats: data });
   };
 
-  const deleteFavourite = (id: number) => {
-    console.log("delete this favourite: " + id);
-    deleteMutation.mutate(id)
+  const handleDelete = (id: number) => {
+    if (
+      confirm("You're about to delete a favourite, do you want to go ahead?")
+    ) {
+      deleteMutation.mutate(id);
+    }
   };
 
   return (
@@ -58,9 +60,14 @@ export const SuperHeroFavouriteCard = ({
         <p>Intelligence: {favourite.powerstats.intelligence}</p>
         <p>Power: {favourite.powerstats.power}</p>
       </div>
-      <h3>Deleted? : {favourite.deleted? <p>Yes</p> : <p>No</p>}</h3>
-      <UpdateForm onSubmit={handleUpdate} currentPowerstats={favourite.powerstats} />
-      <button onClick={() => deleteFavourite(favourite.id)}>Delete from Favourite</button>
+      <h3>Deleted? : {favourite.deleted ? <p>Yes</p> : <p>No</p>}</h3>
+      <UpdateForm
+        onSubmit={handleUpdate}
+        currentPowerstats={favourite.powerstats}
+      />
+      <button onClick={() => handleDelete(favourite.id)}>
+        Delete from Favourite
+      </button>
     </div>
   );
 };
