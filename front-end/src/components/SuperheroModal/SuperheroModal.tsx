@@ -10,7 +10,7 @@ export const SuperheroModal = () => {
   const { setModalOpen, modalHero, setModalHero } = useModal();
 
   const navigate = useNavigate();
-  
+
   const successToast = (heroName: string) =>
     toast("Successfuly added " + heroName + " to your favourites");
   const errorToast = (errorMsg: string) =>
