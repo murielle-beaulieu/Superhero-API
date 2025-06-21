@@ -7,6 +7,7 @@ import {
 import styles from "./SuperHeroFavouriteCard.module.scss";
 import { UpdateForm } from "../UpdateForm/UpdateForm";
 import type { UpdateData } from "../UpdateForm/update-schema";
+import { ToastContainer, toast } from "react-toastify";
 
 interface SuperHeroFavouriteCardProps {
   favourite: SuperheroFavourite;
@@ -17,13 +18,20 @@ export const SuperHeroFavouriteCard = ({
 }: SuperHeroFavouriteCardProps) => {
   const queryClient = useQueryClient();
 
+  const updtateSuccessToast = () => toast("Successfully updated");
+  const updateErrorToast = (errMsg: string) =>
+    toast(
+      "There's been an error while updating: " + errMsg + ".Please try again"
+    );
+
   const updateMutation = useMutation({
     mutationFn: updateSuperheroFavourite,
     onSuccess: () => {
+      updtateSuccessToast();
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },
     onError: (err) => {
-      console.log(err);
+      updateErrorToast(err.message);
     },
   });
 
@@ -50,6 +58,10 @@ export const SuperHeroFavouriteCard = ({
   };
 
   return (
+    <>    
+      <div>
+        <ToastContainer />
+      </div>
     <div className={styles.fav_card}>
       <div className={styles.hero_profile}>
         <img src={`${favourite.images.md}`} alt={`${favourite.name}`} />
@@ -69,5 +81,6 @@ export const SuperHeroFavouriteCard = ({
         Delete from Favourite
       </button>
     </div>
+    </>
   );
 };

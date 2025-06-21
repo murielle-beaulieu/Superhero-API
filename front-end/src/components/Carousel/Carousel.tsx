@@ -26,11 +26,8 @@ export const Carousel = ({ carouselHeroesSlice }: CarouselProps) => {
   return (
     <section className={styles.carousel}>
       <button onClick={() => back()}>{"<"}</button>
-      {carouselHeroesSlice.slice(currentIndex, currentIndex + 3).map((hero) => <SuperHeroCard superhero={hero} />)}
+      {carouselHeroesSlice.slice(currentIndex, currentIndex + 3).map((hero) => <SuperHeroCard superhero={hero} key={hero.id}/>)}
       <button onClick={() => forward()}>{">"}</button>
-      {/* {carouselHeroesSlice.map((hero) => (
-        <SuperHeroCard superhero={hero} />
-      ))} */}
     </section>
   );
 };

@@ -7,10 +7,9 @@ interface CardContainerProps {
 }
 
 export const CardContainer = ({favouritesList}: CardContainerProps) => {
-    console.log(favouritesList);
     if (favouritesList) return (
         <section className={styles.card_container}>
-        { favouritesList.map((hero: SuperheroFavourite) => <SuperHeroFavouriteCard favourite={hero} />)}
+        { favouritesList.map((hero: SuperheroFavourite) => <SuperHeroFavouriteCard favourite={hero} key={hero.id}/>)}
         </section>
     )
 }

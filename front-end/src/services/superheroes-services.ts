@@ -46,6 +46,7 @@ export interface SuperheroConnections {
 }
 
 export interface Superhero {
+  id: number;
   name: string;
   slug: string;
   powerstats: SuperheroPowerstats
