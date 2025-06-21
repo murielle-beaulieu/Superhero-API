@@ -27,8 +27,8 @@ export const Homepage = () => {
   }
 
   if (isSuccess) {
+    
     const randomStartingIndex = Math.floor(Math.random() * data.length);
-    console.log(randomStartingIndex);
 
     const carouselHeroesSlice = data.slice(
       randomStartingIndex,

@@ -8,23 +8,16 @@ import { fetchAllSuperheroesFavourites } from "../services/favourites-services";
 export const UsersFavouritesPage = () => {
   const navigate = useNavigate();
 
-  const {
-    data,
-    isLoading,
-    isSuccess,
-    error,
-  } = useQuery({
+  const { data, isLoading, isSuccess, error } = useQuery({
     queryKey: ["favourites"],
     queryFn: fetchAllSuperheroesFavourites,
   });
 
-  console.log(data);
-  if (isLoading) return <div>loading..</div>
+  if (isLoading) return <div>loading..</div>;
 
   if (error) return <div>{error.message}</div>;
 
   if (isSuccess) {
-
     return (
       <>
         <Navbar>
