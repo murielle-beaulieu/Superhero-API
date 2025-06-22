@@ -1,15 +1,10 @@
-import type { ReactNode } from "react";
 import styles from "./Hero.module.scss";
+import superheroLogo from "../../assets/SuperheroAPI .png";
 
-interface HeroProps {
-    children: ReactNode
-}
-
-export const Hero = ({children}: HeroProps) => {
+export const Hero = () => {
     return (
         <section className={styles.hero}>
-            <h1>Hero Component</h1>
-            {children}
+            <img src={superheroLogo} alt="Superhero API" />
         </section>
     )
 }

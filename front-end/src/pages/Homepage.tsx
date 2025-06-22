@@ -45,9 +45,7 @@ export const Homepage = () => {
             />
           }
         </Navbar>
-        <Hero>
-          <h1>Hello Superheroes</h1>
-        </Hero>
+        <Hero/>
         <Carousel carouselHeroesSlice={carouselHeroesSlice} />
         <header>
           <NavButton
