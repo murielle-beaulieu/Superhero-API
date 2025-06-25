@@ -1,6 +1,23 @@
 .card {
+  height: 10em;
+  width: 10em;
+  border: 0.75px solid black;
+  margin: 2em;
+}
+
+.quickFav {
+  .icon {
+    color: rgb(0, 0, 0);
+    font-size: 1.7em;
+    width: 100%;
+  }
+  &:hover {
+    z-index: 1;
     height: 10em;
     width: 10em;
-    border: 0.75px solid black;
-    margin: 2em;
+
+    .icon {
+      color: rgb(247, 122, 143);
+    }
+  }
 }

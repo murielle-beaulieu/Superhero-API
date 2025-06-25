@@ -7,6 +7,7 @@ import { BrowsePage } from "./pages/BrowsePage";
 import { ModalContextProvider } from "./context/ModalContext";
 import { SearchContextProvider } from "./context/SearchContext";
 import { ToastContainer } from "react-toastify";
+import { CarouselContextProvider } from "./context/CarouselContext";
 
 const queryClient = new QueryClient();
 
@@ -15,17 +16,19 @@ function App() {
     <>
       <ToastContainer />
       <QueryClientProvider client={queryClient}>
-        <ModalContextProvider>
-          <SearchContextProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/all" element={<BrowsePage />} />
-                <Route path="/favourites" element={<UsersFavouritesPage />} />
-              </Routes>
-            </BrowserRouter>
-          </SearchContextProvider>
-        </ModalContextProvider>
+        <CarouselContextProvider>
+          <ModalContextProvider>
+            <SearchContextProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/all" element={<BrowsePage />} />
+                  <Route path="/favourites" element={<UsersFavouritesPage />} />
+                </Routes>
+              </BrowserRouter>
+            </SearchContextProvider>
+          </ModalContextProvider>
+        </CarouselContextProvider>
       </QueryClientProvider>
     </>
   );

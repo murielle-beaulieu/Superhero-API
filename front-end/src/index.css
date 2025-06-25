@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Bangers", system-ui;
   line-height: 1.5;
   font-weight: 400;
 

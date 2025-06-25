@@ -1,5 +1,5 @@
 import { useModal } from "../../context/ModalContext";
-import { HeroSearchBar } from "../HeroSearchBar/HeroSearchBar";
+import { SuperheroSearchBar } from "../SuperheroSearchBar/SuperheroSearchBar";
 import { ResultDisplay } from "../ResultDisplay/ResultDisplay";
 import { SuperheroModal } from "../SuperheroModal/SuperheroModal";
 
@@ -11,7 +11,7 @@ export const SearchAll = () => {
       <header>
         <h1>Search Heroes by Name</h1>
       </header>
-      <HeroSearchBar />
+      <SuperheroSearchBar />
       <ResultDisplay />
       {modalOpen && <SuperheroModal />}
     </>
