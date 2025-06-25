@@ -6,7 +6,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useSearch } from "../../context/SearchContext";
 
-export const HeroSearchBar = () => {
+export const SuperheroSearchBar = () => {
   const [inputValue, setInputValue] = useState("");
 
   const { data, isSuccess } = useQuery({

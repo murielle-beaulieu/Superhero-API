@@ -9,11 +9,13 @@
   .icon {
     color: rgb(0, 0, 0);
     font-size: 1.7em;
-    // width: 100%;
+    width: 100%;
   }
   &:hover {
-    // height: 100%;
-    // width: 100%;
+    z-index: 1;
+    height: 10em;
+    width: 10em;
+
     .icon {
       color: rgb(247, 122, 143);
     }

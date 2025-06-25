@@ -23,12 +23,11 @@ export const SuperHeroCard = ({ superhero }: SuperheroCardProps) => {
     setModalHero(modalHero);
   };
 
-    const addFavouriteMutation = useMutation({
+  const addFavouriteMutation = useMutation({
     mutationFn: createSuperheroFavourite,
     onSuccess: () => {
-        console.log('yay')
-      }
-    ,
+      console.log("yay");
+    },
     onError: (err) => {
       console.log(err.message);
     },
@@ -49,7 +48,10 @@ export const SuperHeroCard = ({ superhero }: SuperheroCardProps) => {
         <p>{superhero.name}</p>
         <div className={styles.quickFav}>
           <div className={styles.icon}>
-          <FontAwesomeIcon icon={faHeart} onClick={()=> addToFavourites(superhero)}/>  
+            <FontAwesomeIcon
+              icon={faHeart}
+              onClick={() => addToFavourites(superhero)}
+            />
           </div>
         </div>
       </div>
