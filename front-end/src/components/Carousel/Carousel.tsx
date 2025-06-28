@@ -8,7 +8,6 @@ interface CarouselProps {
 }
 
 export const Carousel = ({ carouselHeroesSlice }: CarouselProps) => {
-  
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const back = () => {
@@ -24,10 +23,17 @@ export const Carousel = ({ carouselHeroesSlice }: CarouselProps) => {
   };
 
   return (
-    <section className={styles.carousel}>
-      <button onClick={() => back()}>{"<"}</button>
-      {carouselHeroesSlice.slice(currentIndex, currentIndex + 3).map((hero) => <SuperHeroCard superhero={hero} key={hero.id}/>)}
-      <button onClick={() => forward()}>{">"}</button>
-    </section>
+    <div className={styles.carousel_header}>
+      <h2 className={styles.carousel_header_title}>Superheroes of the day</h2>
+      <section className={styles.carousel}>
+        <button onClick={() => back()}>{"<"}</button>
+        {carouselHeroesSlice
+          .slice(currentIndex, currentIndex + 3)
+          .map((hero) => (
+            <SuperHeroCard superhero={hero} key={hero.id} />
+          ))}
+        <button onClick={() => forward()}>{">"}</button>
+      </section>
+    </div>
   );
 };

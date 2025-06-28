@@ -1,23 +1,57 @@
+@use "../../partials/colors.module";
+
 .card {
-  height: 10em;
-  width: 10em;
-  border: 0.75px solid black;
+  height: 16em;
+  width: 16em;
   margin: 2em;
-}
-
-.quickFav {
-  .icon {
-    color: rgb(0, 0, 0);
-    font-size: 1.7em;
+  z-index: 1;
+  background-color: black;
+  position: relative;
+  border: 1.5em solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  .info {
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 3;
   }
-  &:hover {
-    z-index: 1;
-    height: 10em;
-    width: 10em;
+  
+  img {
+    border: 1em solid colors.$comic-yellow;
+    position: absolute;
+    height: 16em;
+    width: 16em;
+    object-fit: cover;
+    z-index: 2;
+  }
+  h2 {
+    z-index: 2;
+    color: white;
+    align-self: center;
+  }
+  .see_more {
+    opacity: 0;
+    color: white;
+    font-size: 3em;
+    color: white;
+  }
 
-    .icon {
-      color: rgb(247, 122, 143);
+  &:hover {
+    img {
+      filter: opacity(50%);
+    }
+    .see_more {
+      opacity: 100;
+      &:hover {
+        border-bottom: 1px rgb(255, 255, 255) solid;
+      }
     }
   }
 }

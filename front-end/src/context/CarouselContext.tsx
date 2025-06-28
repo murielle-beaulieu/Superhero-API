@@ -1,15 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
 interface CarouselContext {
-  date: string;
   today: string;
   setToday: (date: string) => void;
+  savedDate: string | null;
 }
 
 const CarouselContext = createContext<CarouselContext | undefined>(undefined);
@@ -21,17 +15,25 @@ interface CarouselContextProviderProps {
 export const CarouselContextProvider = ({
   children,
 }: CarouselContextProviderProps) => {
-  const [date, setDate] = useState<string>("");
-  const [today, setToday] = useState<string>("");
+  const [today, setToday] = useState<string>(new Date().toLocaleDateString());
+  const [savedDate, setSavedDate] = useState<string | null>(
+    localStorage.getItem("savedDate")
+  );
 
-  useEffect(() => {
-    setDate(new Date().toISOString());
-    setToday(new Date().toISOString());
-    localStorage.setItem("savedDate", today);
-  }, [today]);
+  if (savedDate == null) {
+    setSavedDate(new Date().toLocaleDateString());
+  }
+
+  if (savedDate) {
+    if (savedDate != today) {
+      localStorage.setItem("savedDate", today);
+    }
+  }
 
   return (
-    <CarouselContext.Provider value={{ date, today, setToday }}>
+    <CarouselContext.Provider
+      value={{ today, setToday, savedDate }}
+    >
       {children}
     </CarouselContext.Provider>
   );
