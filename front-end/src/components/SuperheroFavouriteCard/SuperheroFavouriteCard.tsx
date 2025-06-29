@@ -87,9 +87,7 @@ export const SuperHeroFavouriteCard = ({
             <span className={styles.stats_title}>
               <h2>Hero Powerstats</h2>
             </span>
-            <div
-              className={styles.hero_stats}
-            >
+            <div className={styles.hero_stats}>
               <span className={styles.stats_data}>
                 <p>Intelligence: {favourite.powerstats.intelligence}</p>
                 <p>Strength: {favourite.powerstats.strength}</p>
@@ -104,25 +102,47 @@ export const SuperHeroFavouriteCard = ({
           </>
         ) : (
           <>
+            <span className={styles.stats_title}>
+              <h2>Update Hero Powerstats</h2>
+            </span>
             <UpdateForm
               onSubmit={handleUpdate}
               currentPowerstats={favourite.powerstats}
             />
-            <button onClick={() => setShowStats(true)}>Cancel</button>
+            <div className={styles.modal_actions}>
+              <button
+                onClick={() => setShowStats(true)}
+                className={styles.btn_fav_card}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(favourite.id)}
+                className={styles.btn_fav_card + " " + styles.del}
+              >
+                Delete from Favourite
+              </button>
+            </div>
           </>
         )}
-        <button
-          onClick={() => () => setShowStats(false)}
-          className={styles.btn_fav_card}
-        >
-          Update Favourite
-        </button>
-        <button
-          onClick={() => handleDelete(favourite.id)}
-          className={styles.btn_fav_card}
-        >
-          Delete from Favourite
-        </button>
+        {showStats ? (
+          <div className={styles.modal_actions}>
+            <button
+              onClick={() => setShowStats(false)}
+              className={styles.btn_fav_card}
+            >
+              Update Favourite
+            </button>
+            <button
+              onClick={() => handleDelete(favourite.id)}
+              className={styles.btn_fav_card + " " + styles.del}
+            >
+              Delete from Favourite
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

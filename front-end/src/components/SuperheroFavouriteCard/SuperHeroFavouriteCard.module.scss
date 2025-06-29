@@ -73,3 +73,12 @@
   padding: 0.25em 0.75em;
   background-color: colors.$comic-yellow;
 }
+
+.del {
+  background-color: colors.$comic-red;
+  color: white;
+}
+
+.modal_actions {
+  display: flex ;
+}
