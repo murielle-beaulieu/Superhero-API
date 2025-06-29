@@ -47,7 +47,6 @@ export const Homepage = () => {
       Number(randomStartingIndex) + 5
     );
 
-    console.log(carouselHeroesSlice);
 
     return (
       <>
