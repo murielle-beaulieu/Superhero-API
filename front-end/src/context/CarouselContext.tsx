@@ -24,12 +24,6 @@ export const CarouselContextProvider = ({
     setSavedDate(new Date().toLocaleDateString());
   }
 
-  if (savedDate) {
-    if (savedDate != today) {
-      localStorage.setItem("savedDate", today);
-    }
-  }
-
   return (
     <CarouselContext.Provider
       value={{ today, setToday, savedDate }}

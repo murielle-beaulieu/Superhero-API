@@ -1,11 +1,6 @@
 @use "../../partials/colors.module";
 
 article {
-  //   display: flex;
-  //   justify-content: space-evenly;
-  //   align-items: center;
-  //   flex-direction: row;
-  //   height: 12em;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -19,7 +14,6 @@ article {
 form {
   height: 100%;
   width: 100%;
-    // margin: 1em;
   padding: 1em;
 }
 

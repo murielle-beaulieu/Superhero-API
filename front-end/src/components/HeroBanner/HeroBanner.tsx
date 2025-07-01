@@ -11,7 +11,7 @@ export const HeroBanner = () => {
     <>
       <section className={styles.hero}>
         <img src={superheroLogo} alt="Superhero API" />
-        <span className={styles.hero_middle}></span>
+        <div className={styles.hero_middle}></div>
       </section>
         <span className={styles.navigation}>
           <NavButton

@@ -1,3 +1,5 @@
+@use "../../partials/colors.module";
+
 .btn_arr {
     display: flex;
     justify-content: center;
@@ -8,5 +10,9 @@
         align-items: center;
         height: 2em;
         width: 2em;
+        background-color: colors.$comic-navy;
+        color: white;
+        padding: 0.25em;
+        margin: 0.25em;
     }
 }
