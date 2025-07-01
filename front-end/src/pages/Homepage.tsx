@@ -23,15 +23,20 @@ export const Homepage = () => {
   let randomStartingIndex = Number(localStorage.getItem("randomIndex"));
 
   useEffect(() => {
-    if (randomStartingIndex == null) {
-      randomStartingIndex = Math.floor(Math.random() * data.length);
-      localStorage.setItem("randomIndex", `${randomStartingIndex}`);
+    if(data) {
+
+      if (randomStartingIndex == null) {
+        randomStartingIndex = Math.floor(Math.random() * data.length);
+        localStorage.setItem("randomIndex", `${randomStartingIndex}`);
+      }
+      
+      if (savedDate != today) {
+        localStorage.setItem("savedDate", today);
+        randomStartingIndex = Math.floor(Math.random() * data.length);
+        localStorage.setItem("randomIndex", `${randomStartingIndex}`);
+      }
     }
-    if (savedDate != today) {
-      randomStartingIndex = Math.floor(Math.random() * data.length);
-      localStorage.setItem("randomIndex", `${randomStartingIndex}`);
-    }
-  }, [data, isSuccess, today, randomStartingIndex]);
+  }, [data, isSuccess, today, savedDate, randomStartingIndex]);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -46,8 +51,6 @@ export const Homepage = () => {
       randomStartingIndex,
       Number(randomStartingIndex) + 5
     );
-
-    console.log(carouselHeroesSlice);
 
     return (
       <>

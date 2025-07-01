@@ -30,10 +30,6 @@ export const UsersFavouritesPage = () => {
         </Navbar>
         <header>
           <h1>Your Superheroes Favourites</h1>
-          <NavButton
-            handleClick={() => console.log("searching for a specific hero")}
-            innerText={"Search from your favourites heroes"}
-          />
         </header>
         <CardContainer favouritesList={data} />
       </>

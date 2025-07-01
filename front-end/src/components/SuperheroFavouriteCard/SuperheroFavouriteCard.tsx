@@ -8,6 +8,7 @@ import styles from "./SuperHeroFavouriteCard.module.scss";
 import { UpdateForm } from "../UpdateForm/UpdateForm";
 import type { UpdateData } from "../UpdateForm/update-schema";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 interface SuperHeroFavouriteCardProps {
   favourite: SuperheroFavourite;
@@ -17,6 +18,8 @@ export const SuperHeroFavouriteCard = ({
   favourite,
 }: SuperHeroFavouriteCardProps) => {
   const queryClient = useQueryClient();
+
+  const [showStats, setShowStats] = useState<boolean>(true);
 
   const updtateSuccessToast = () => toast("Successfully updated");
   const updateErrorToast = (errMsg: string) =>
@@ -65,23 +68,81 @@ export const SuperHeroFavouriteCard = ({
   return (
     <>
       <div className={styles.fav_card}>
+        <span className={styles.name_banner}>
+          <h2>{favourite.name}</h2>
+        </span>
         <div className={styles.hero_profile}>
           <img src={`${favourite.images.md}`} alt={`${favourite.name}`} />
+          <span>
+            <p>Name : {favourite.biography.fullName}</p>
+            <p>Born: {favourite.biography.placeOfBirth}</p>
+            <p>Publisher: {favourite.biography.publisher}</p>
+            <p>Alter Egos: {favourite.biography.alterEgos}</p>
+            <p>First Appeared: {favourite.biography.firstAppearance}</p>
+            {/* <p>Alignment: {favourite.biography.alignment}</p> */}
+          </span>
         </div>
-        <div className={styles.hero_stats}>
-          <p>Combat: {favourite.powerstats.combat}</p>
-          <p>Durability: {favourite.powerstats.durability}</p>
-          <p>Intelligence: {favourite.powerstats.intelligence}</p>
-          <p>Power: {favourite.powerstats.power}</p>
-        </div>
-        <h3>Deleted? : {favourite.deleted ? <p>Yes</p> : <p>No</p>}</h3>
-        <UpdateForm
-          onSubmit={handleUpdate}
-          currentPowerstats={favourite.powerstats}
-        />
-        <button onClick={() => handleDelete(favourite.id)}>
-          Delete from Favourite
-        </button>
+        {showStats ? (
+          <>
+            <span className={styles.stats_title}>
+              <h2>Hero Powerstats</h2>
+            </span>
+            <div className={styles.hero_stats}>
+              <span className={styles.stats_data}>
+                <p>Intelligence: {favourite.powerstats.intelligence}</p>
+                <p>Strength: {favourite.powerstats.strength}</p>
+                <p>Speed: {favourite.powerstats.speed}</p>
+              </span>
+              <span className={styles.stats_data}>
+                <p>Durability: {favourite.powerstats.durability}</p>
+                <p>Power: {favourite.powerstats.power}</p>
+                <p>Combat: {favourite.powerstats.combat}</p>
+              </span>
+            </div>
+          </>
+        ) : (
+          <>
+            <span className={styles.stats_title}>
+              <h2>Update Hero Powerstats</h2>
+            </span>
+            <UpdateForm
+              onSubmit={handleUpdate}
+              currentPowerstats={favourite.powerstats}
+            />
+            <div className={styles.modal_actions}>
+              <button
+                onClick={() => setShowStats(true)}
+                className={styles.btn_fav_card}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(favourite.id)}
+                className={styles.btn_fav_card + " " + styles.del}
+              >
+                Delete from Favourite
+              </button>
+            </div>
+          </>
+        )}
+        {showStats ? (
+          <div className={styles.modal_actions}>
+            <button
+              onClick={() => setShowStats(false)}
+              className={styles.btn_fav_card}
+            >
+              Update Favourite
+            </button>
+            <button
+              onClick={() => handleDelete(favourite.id)}
+              className={styles.btn_fav_card + " " + styles.del}
+            >
+              Delete from Favourite
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

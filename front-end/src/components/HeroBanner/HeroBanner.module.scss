@@ -13,21 +13,21 @@
     height: 40em;
     z-index: 2;
   }
-}
-
-.hero_middle {
-  width: 100%;
-  background-color: colors.$comic-red;
-  position: absolute;
-  align-self: center;
-  z-index: 1;
+  .hero_middle {
+    height: 5em;
+    width: 100%;
+    background-color: colors.$comic-red;
+    position: absolute;
+    align-self: center;
+    z-index: 1;
+  }
 }
 
 .navigation {
   display: flex;
   justify-content: center;
   background-color: colors.$comic-turquoise;
-  padding: 0 0 8em;
+  padding: 0 0 10em;
 
   button {
     background-color: colors.$comic-yellow;

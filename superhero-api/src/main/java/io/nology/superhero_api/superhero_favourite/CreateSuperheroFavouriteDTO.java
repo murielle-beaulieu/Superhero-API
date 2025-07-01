@@ -15,6 +15,8 @@ public class CreateSuperheroFavouriteDTO {
 
     private Powerstats powerstats;
 
+    private Biography biography;
+
     private SuperheroAppearance appearance;
 
     private  Boolean deleted = false;

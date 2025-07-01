@@ -38,6 +38,10 @@ public class SuperheroFavourite {
     @Column(columnDefinition = "json")
     private SuperheroAppearance appearance;
 
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "json")
+    private Biography biography;
+
     @Column
     private Boolean deleted;
     // will add other information about the superhero later on
